@@ -6,18 +6,15 @@
   void NAME ## FluxFactory::printInfo() { \
     std::cout << # NAME << "FluxFactory" << std::endl; \
   } \
-  void NAME ## FluxFactory::flux(Material* m, AdditionalData payload) { \
-    m->getFluxFactory()->fluxWith(this, payload); \
+  std::string NAME ## FluxFactory::flux(Material* m, AdditionalData payload) { \
+    return m->getFluxFactory()->fluxWith(this, payload); \
   } \
-  void FluxFactory::fluxWith(NAME ## FluxFactory* f, AdditionalData payload) { \
-    std::cout << "Not implemented!" << std::endl; \
+  std::string FluxFactory::fluxWith(NAME ## FluxFactory* f, AdditionalData payload) { \
+    return "Not implemented!"; \
   } \
   
-void computeFlux(Material* loc, Material* neigh, AdditionalData payload) {
-  std::cout << materialToString(loc->getType()) << "/" << materialToString(neigh->getType()) << ": ";
-//  loc->flux(neigh);
-
-  loc->getFluxFactory()->flux(neigh, payload);
+std::string computeFlux(Material* loc, Material* neigh, AdditionalData payload) {
+  return loc->getFluxFactory()->flux(neigh, payload);
 }
 
 
@@ -30,8 +27,8 @@ void FluxFactory::printInfo() {
   std::cout << "FluxFactory" << std::endl;
 }
 
-void FluxFactory::fluxWith(FluxFactory* f, AdditionalData payload) {
-  std::cout << "not implemented" << std::endl;
+std::string FluxFactory::fluxWith(FluxFactory* f, AdditionalData payload) {
+  return "not implemented";
 }
 
 /*
@@ -39,12 +36,16 @@ void FluxFactory::fluxWith(FluxFactory* f, AdditionalData payload) {
  */
 GENERATE_FLUXFACTORY(Elastic)
 
-void ElasticFluxFactory::fluxWith(ElasticFluxFactory* f, AdditionalData payload) {
-  std::cout << "Elastic - Elastic coupling: " << this->m->lambda << "/" << f->m->lambda << " "<< payload.text << std::endl;
+std::string ElasticFluxFactory::fluxWith(ElasticFluxFactory* f, AdditionalData payload) {
+  std::string ret = "Elastic - Elastic coupling ";
+  ret = ret.append(std::to_string(f->m->lambda));
+  ret = ret.append("/");
+  ret = ret.append(std::to_string(this->m->lambda));
+  return ret;
 }
 
-void ElasticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload) {
-  std::cout << "Acoustic - Elastic coupling" << std::endl;
+std::string ElasticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload) {
+  return "Acoustic - Elastic coupling";
 }
 
 
@@ -53,8 +54,8 @@ void ElasticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload
  */
 GENERATE_FLUXFACTORY(Acoustic)
 
-void AcousticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload) {
-  std::cout << "Acoustic - Acoustic coupling: " << payload.text << std::endl;
+std::string AcousticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload) {
+  return std::string("Acoustic - Acoustic coupling: ").append(payload.text);
 }
 
 /*

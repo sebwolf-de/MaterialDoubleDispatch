@@ -23,7 +23,7 @@ int main(int argc, const char** argv) {
       auto now = std::chrono::high_resolution_clock::now();
       text.append(std::to_string(std::chrono::system_clock::to_time_t(now))) ;
 
-      computeFlux(m, n, {text});
+      std::cout <<computeFlux(m, n, {text}) << std::endl;
     }
   }
 

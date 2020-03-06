@@ -14,3 +14,14 @@ add_executable(main src/main.cpp)
 
 target_link_libraries(main PUBLIC FluxFactory Material)
 
+find_package(CxxTest)
+if(CXXTEST_FOUND)
+    include_directories(${CXXTEST_INCLUDE_DIR})
+    enable_testing()
+
+    CXXTEST_ADD_TEST(test_computeFlux test_computeFlux.cpp
+                      ${CMAKE_CURRENT_SOURCE_DIR}/src/tests/test_computeFlux.t.h)
+    target_link_libraries(test_computeFlux PUBLIC FluxFactory Material) # as needed
+endif()
+
+
