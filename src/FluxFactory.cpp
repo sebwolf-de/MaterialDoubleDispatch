@@ -40,8 +40,11 @@ void FluxFactory::fluxWith(FluxFactory* f, AdditionalData payload) {
 GENERATE_FLUXFACTORY(Elastic)
 
 void ElasticFluxFactory::fluxWith(ElasticFluxFactory* f, AdditionalData payload) {
-  std::cout << this->m->lambda << "/" << f->m->lambda;
   std::cout << "Elastic - Elastic coupling: " << this->m->lambda << "/" << f->m->lambda << " "<< payload.text << std::endl;
+}
+
+void ElasticFluxFactory::fluxWith(AcousticFluxFactory* f, AdditionalData payload) {
+  std::cout << "Acoustic - Elastic coupling" << std::endl;
 }
 
 

@@ -41,6 +41,7 @@ class ElasticFluxFactory : public FluxFactory {
   virtual void flux(Material* m, AdditionalData payload) override;
 
   virtual void fluxWith(ElasticFluxFactory* f, AdditionalData payload) override;
+  virtual void fluxWith(AcousticFluxFactory* f, AdditionalData payload) override;
 
   private:
   const ElasticMaterial* m;

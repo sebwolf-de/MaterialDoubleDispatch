@@ -20,7 +20,7 @@ int main(int argc, const char** argv) {
   for(auto m : materials) {
     for(auto n: materials) {
       std::string text = "additonal data ";
-      auto now = std::chrono::system_clock::now();
+      auto now = std::chrono::high_resolution_clock::now();
       text.append(std::to_string(std::chrono::system_clock::to_time_t(now))) ;
 
       computeFlux(m, n, {text});
