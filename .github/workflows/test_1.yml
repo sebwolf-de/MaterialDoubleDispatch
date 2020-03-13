@@ -36,3 +36,5 @@ jobs:
       run: |
         cd build
         make test
+    - name: Coverage
+      run: bash <(curl -s https://codecov.io/bash)
