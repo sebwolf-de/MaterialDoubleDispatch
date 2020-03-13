@@ -25,7 +25,10 @@ if(CXXTEST_FOUND)
 
   CXXTEST_ADD_TEST(test_computeFlux test_computeFlux.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/tests/test_computeFlux.t.h)
-  target_link_libraries(test_computeFlux PUBLIC FluxFactory Material) # as needed
+  target_link_libraries(test_computeFlux PUBLIC FluxFactory Material)
+  CXXTEST_ADD_TEST(test_material test_material.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/tests/test_material.t.h)
+  target_link_libraries(test_material PUBLIC Material FluxFactory)
 endif()
 
 
