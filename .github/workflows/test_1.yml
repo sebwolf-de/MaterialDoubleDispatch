@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: |
         mkdir build && cd build
-        cmake ..
+        cmake .. -DCXXTEST_INCLUDE_DIR=../cxxtest -DCXXTEST_PYTHON_TESTGEN_EXECUTABLE=../cxxtest/python/scripts/cxxtestgen
         make
     - name: Test
       run: make test
