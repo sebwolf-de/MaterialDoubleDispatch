@@ -40,12 +40,60 @@ public:
 
    void test_elastic_acoustic( void )
    {
-     auto* mat2 = new AcousticMaterial();
      auto* mat1 = new ElasticMaterial();
+     auto* mat2 = new AcousticMaterial();
 
      auto computedString = computeFlux(mat1, mat2, {""});
      auto expectedString = "Not implemented!";
      TS_ASSERT(computedString == expectedString);
    }
 
+   void test_elastic_poroelastic( void )
+   {
+     auto* mat1 = new ElasticMaterial();
+     auto* mat2 = new PoroelasticMaterial();
+
+     auto computedString = computeFlux(mat1, mat2, {""});
+     auto expectedString = "Not implemented!";
+     TS_ASSERT(computedString == expectedString);
+   }
+
+   void test_acoustic_poroelastic( void )
+   {
+     auto* mat1 = new AcousticMaterial();
+     auto* mat2 = new PoroelasticMaterial();
+
+     auto computedString = computeFlux(mat1, mat2, {""});
+     auto expectedString = "Not implemented!";
+     TS_ASSERT(computedString == expectedString);
+   }
+
+   void test_poroelastic_acoustic( void )
+   {
+     auto* mat1 = new PoroelasticMaterial();
+     auto* mat2 = new AcousticMaterial();
+
+     auto computedString = computeFlux(mat1, mat2, {""});
+     auto expectedString = "Not implemented!";
+     TS_ASSERT(computedString == expectedString);
+   }
+   void test_poroelastic_elastic( void )
+   {
+     auto* mat1 = new PoroelasticMaterial();
+     auto* mat2 = new ElasticMaterial();
+
+     auto computedString = computeFlux(mat1, mat2, {""});
+     auto expectedString = "Not implemented!";
+     TS_ASSERT(computedString == expectedString);
+   }
+
+   void test_poroelastic_poroelastic( void )
+   {
+     auto* mat1 = new PoroelasticMaterial();
+     auto* mat2 = new PoroelasticMaterial();
+
+     auto computedString = computeFlux(mat1, mat2, {""});
+     auto expectedString = "Not implemented!";
+     TS_ASSERT(computedString == expectedString);
+   }
 };

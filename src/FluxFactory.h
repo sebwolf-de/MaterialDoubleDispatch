@@ -33,6 +33,7 @@ class FluxFactory {
   const Material* m;
 };
 
+
 class ElasticFluxFactory : public FluxFactory {
   public:
   ElasticFluxFactory(const ElasticMaterial* m);
