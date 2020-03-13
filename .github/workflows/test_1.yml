@@ -23,8 +23,8 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+    - name: Setup
+      run: git submodule update --init
 
     # Build application
     - name: Build
@@ -33,4 +33,6 @@ jobs:
         cmake .. -DCXXTEST_INCLUDE_DIR=../cxxtest -DCXXTEST_PYTHON_TESTGEN_EXECUTABLE=../cxxtest/python/scripts/cxxtestgen
         make
     - name: Test
-      run: make test
+      run: |
+        cd build
+        make test
